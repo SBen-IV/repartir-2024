@@ -64,9 +64,10 @@ public class Grupo {
     }
 
     public void setTotal(BigDecimal total) {
-        this.total = total;
-        if (this.total.compareTo(BigDecimal.ZERO) < 0) {
+        if (total.compareTo(BigDecimal.ZERO) < 0) {
             this.total = BigDecimal.ZERO;
+        } else {
+            this.total = total;
         }
     }
 
