@@ -46,6 +46,6 @@ public class TotalNoNegativoSteps extends FastCucumberSteps {
         // Check the new monto
         BigDecimal nuevoTotal = this.grupo.getTotal();
 
-        assertThat(nuevoTotal).isEqualTo(monto);
+        assertThat(nuevoTotal.compareTo(monto)).isZero();
     }
 }
