@@ -20,4 +20,4 @@ Característica: Crear Grupo para repartir gastos
     Escenario: El total de un grupo es siempre positivo
       Dado existe un grupo con monto total $ 0.0
       Cuando el usuario agrega un monto de $ 100.0
-      Entonces el nuevo monto debería ser $ 100.00
+      Entonces el nuevo monto debería ser $ 100.0

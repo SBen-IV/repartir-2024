@@ -8,6 +8,8 @@ import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -15,41 +17,35 @@ public class TotalNoNegativoSteps extends FastCucumberSteps {
 
     private Grupo grupo;
 
-//    @Cuando("el usuario intenta crear un grupo indicando un único miembro")
-//    public void elUsuarioIntentaCrearUnGrupoIndicandoUnUnicoMiembro() {
-//
-//        List<String> miembros = new LinkedList<String>();
-//        miembros.add( "Oscar" );
-//
-//        grupo = new Grupo();
-//
-//        grupo.setMiembros( miembros );
-//    }
-//
-//    @Entonces("no debería crear el grupo con un único miembro")
-//    public void noDeberiaCrearElGrupoConUnUnicoMiembro() {
-//
-//        assertThat( this.grupo.estaFormado() ).isFalse();
-//    }
-
     @Dado("existe un grupo con monto total $ {bigdecimal}")
     public void existeUnGrupoConMontoTotal$(BigDecimal monto) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
         // Create a new group
+        Grupo grupo = new Grupo();
+        grupo.setNombre("Fiesta de disfraces");
+        List<String> miembros = new LinkedList<String>();
+        miembros.add( "Oscar" );
+        miembros.add( "Luis" );
+        grupo.setMiembros(miembros);
+        grupo.setTotal(monto);
+
+        assertThat(grupo.estaFormado()).isTrue();
+
+        this.grupo = grupo;
     }
 
     @Cuando("el usuario agrega un monto de $ {bigdecimal}")
     public void elUsuarioAgregaUnMontoDe$(BigDecimal monto) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
         // Add new monto
+        BigDecimal totalActual = this.grupo.getTotal();
+        BigDecimal total = totalActual.add(monto);
+        this.grupo.setTotal(total);
     }
 
     @Entonces("el nuevo monto debería ser $ {bigdecimal}")
     public void elNuevoMontoDeberiaSer$(BigDecimal monto) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
         // Check the new monto
+        BigDecimal nuevoTotal = this.grupo.getTotal();
+
+        assertThat(nuevoTotal).isEqualTo(monto);
     }
 }
